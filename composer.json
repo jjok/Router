@@ -1,0 +1,18 @@
+{
+	"name": "jjok/router",
+	"description": "A simple router.",
+	"license": "MIT",
+	"homepage": "https://github.com/jjok/Router",
+	"authors": [{
+		"name": "Jonathan Jefferies",
+		"homepage": "http://jjok.co.uk",
+		"role": "Developer"
+	}],
+	"autoload": {
+		"psr-0": {"jjok\\Router\\": "src/"}
+	},
+	"require": {
+		"php": ">=5.3.0",
+		"jjok/string": "1.*"
+	}
+}
