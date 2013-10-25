@@ -1,0 +1,63 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
+    ],
+    "hash": "5993f4f0e2164b98f55d7a2bd2b5ba10",
+    "packages": [
+        {
+            "name": "jjok/string",
+            "version": "1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jjok/String.git",
+                "reference": "547c8c8168586480d39a6e5f36ba7f40cc898c93"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/jjok/String/zipball/547c8c8168586480d39a6e5f36ba7f40cc898c93",
+                "reference": "547c8c8168586480d39a6e5f36ba7f40cc898c93",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "jjok\\String\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jonathan Jefferies",
+                    "homepage": "http://jjok.co.uk",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Useful string functions for PHP",
+            "homepage": "https://github.com/jjok/String",
+            "time": "2013-09-25 11:49:00"
+        }
+    ],
+    "packages-dev": [
+
+    ],
+    "aliases": [
+
+    ],
+    "minimum-stability": "stable",
+    "stability-flags": [
+
+    ],
+    "platform": {
+        "php": ">=5.3.0"
+    },
+    "platform-dev": [
+
+    ]
+}

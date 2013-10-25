@@ -1,10 +1,12 @@
 Router
 ======
 
+[![Build Status](https://travis-ci.org/jjok/Router.png?branch=master)](https://travis-ci.org/jjok/Router)
+
 TODO
 ----
 
-* Renamed public methods in Router.
+* Rename public methods in Router.
 * Finish unit tests.
 * Add examples.
 
