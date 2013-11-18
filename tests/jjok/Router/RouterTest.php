@@ -13,17 +13,15 @@ use jjok\Router\Router;
 class RouterTest extends PHPUnit_Framework_TestCase {
 	
 	/**
-	 * `null` is returned when no match is found. 
-	 * @covers \jjok\Router\Router::matchRoute
+	 * `null` is returned when no match is found.
 	 */
-	public function testUnknownRouteReturnsNull() {
+	public function testNullReturnedForUnknownRoute() {
 		$router = new Router(array(), '');
 		$this->assertNull($router->matchRoute('unknown'));
 	}
 	
 	/**
 	 * If the match is not a regex, the Route is returned without modification.
-	 * @covers \jjok\Router\Router::matchRoute
 	 */
 	public function testExactMatchReturnsRouteAsIs() {
 		$empty_route = new Route();
@@ -42,7 +40,7 @@ class RouterTest extends PHPUnit_Framework_TestCase {
 	}
 	
 	/**
-	 * @covers \jjok\Router\Router::matchRoute
+	 * 
 	 */
 	public function testControllerIsPopulatedIfNull() {
 		$router = new Router(array(
@@ -62,7 +60,7 @@ class RouterTest extends PHPUnit_Framework_TestCase {
 	}
 	
 	/**
-	 * @covers \jjok\Router\Router::matchRoute
+	 * 
 	 */
 	public function testActionIsPopulatedIfNull() {
 		$router = new Router(array(
@@ -82,7 +80,7 @@ class RouterTest extends PHPUnit_Framework_TestCase {
 	}
 	
 	/**
-	 * @covers \jjok\Router\Router::matchRoute
+	 * 
 	 */
 	public function testAdditionalWildcardMatchesAreAddedAsParams() {
 		$router = new Router(array(
@@ -99,7 +97,7 @@ class RouterTest extends PHPUnit_Framework_TestCase {
 	}
 	
 	/**
-	 * @covers \jjok\Router\Router::matchRoute
+	 * 
 	 */
 	public function testNullReturnedIfNotEnoughMatchedParams() {
 		$router = new Router(array(
@@ -110,7 +108,7 @@ class RouterTest extends PHPUnit_Framework_TestCase {
 	}
 	
 	/**
-	 * @covers \jjok\Router\Router::automatic
+	 * 
 	 */
 	public function testNullReturnedIfClassDoesNotExist() {		
 		$router = new Router(array(), '%s');
@@ -118,7 +116,7 @@ class RouterTest extends PHPUnit_Framework_TestCase {
 	}
 
 	/**
-	 * @covers \jjok\Router\Router::automatic
+	 * 
 	 */
 	public function testDefaultActionUsedIfNoneGiven() {
 		$router = new Router(array(), '%s');
@@ -128,7 +126,7 @@ class RouterTest extends PHPUnit_Framework_TestCase {
 	}
 	
 	/**
-	 * @covers \jjok\Router\Router::automatic
+	 * 
 	 */
 	public function testNullReturnedIfDefaultActionDoesNotExist() {
 		$router = new Router(array(), '%s');
@@ -136,7 +134,7 @@ class RouterTest extends PHPUnit_Framework_TestCase {
 	}
 	
 	/**
-	 * @covers \jjok\Router\Router::automatic
+	 *
 	 */
 	public function testActionCanBeSpecified() {
 		$router = new Router(array(), '%s');
@@ -146,9 +144,9 @@ class RouterTest extends PHPUnit_Framework_TestCase {
 	}
 	
 	/**
-	 * @covers \jjok\Router\Router::automatic
+	 * 
 	 */
-	public function testSomething() {
+	public function testParamsCanBeSpecified() {
 		$router = new Router(array(), '%s');
 		$route = $router->automatic('my-controller1/my-param1');
 		$this->assertSame('MyController1', $route->getController());
