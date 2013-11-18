@@ -5,7 +5,7 @@ namespace jjok\Router;
 use jjok\String\String;
 
 /**
- * Works out which Controller and action to call from a given query.
+ * Works out which controller and action to call from a given query.
  * @package jjok\Router
  * @author Jonathan Jefferies
  * @version 0.2.0
@@ -20,6 +20,7 @@ class Router {
 	protected $routes = array();
 	
 	/**
+	 * The format of the controller file.
 	 * @todo Make this an array?
 	 * @var string
 	 */

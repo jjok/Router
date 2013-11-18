@@ -3,7 +3,7 @@
 namespace jjok\Router;
 
 /**
- * 
+ * A route.
  * @author Jonathan Jefferies
  * @version 0.2.0
  */
@@ -16,19 +16,19 @@ class Route {
 	protected $controller;
 	
 	/**
-	 * 
+	 * The name of the action to be called.
 	 * @var string
 	 */
 	protected $action;
 	
 	/**
-	 * 
+	 * Parameters to pass to the action.
 	 * @var array
 	 */
 	protected $params;
 	
 	/**
-	 * 
+	 * Set the controller, action and params.
 	 * @param string $controller
 	 * @param string $action
 	 * @param array $params
@@ -40,7 +40,7 @@ class Route {
 	}
 	
 	/**
-	 * 
+	 * Get the name of the controller.
 	 * @return string
 	 */
 	public function getController() {
@@ -56,7 +56,7 @@ class Route {
 	}
 	
 	/**
-	 * 
+	 * Get the name of the action.
 	 * @return string
 	 */
 	public function getAction() {
@@ -72,7 +72,7 @@ class Route {
 	}
 	
 	/**
-	 * 
+	 * Get params to pass to the action.
 	 * @return string[]
 	 */
 	public function getParams() {
@@ -80,7 +80,7 @@ class Route {
 	}
 	
 	/**
-	 * 
+	 * Set params to be passed to the action.
 	 * @param array $params
 	 */
 	public function setParams(array $params) {
