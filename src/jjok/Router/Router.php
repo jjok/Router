@@ -125,8 +125,6 @@ class Router {
 		$controller = sprintf($this->controller_path, String::capitalise(array_shift($url_array)));
 		
 		if(class_exists($controller)) {
-			
-// 			$action = String::camelise(array_shift($url_array));
 
 			$possible_action = array_shift($url_array);
 			$action = String::camelise($possible_action);
