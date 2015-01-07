@@ -4,8 +4,8 @@ namespace jjok\Router;
 
 /**
  * A route.
+ * @package jjok\Router
  * @author Jonathan Jefferies
- * @version 0.2.0
  */
 class Route {
 	
@@ -29,9 +29,9 @@ class Route {
 	
 	/**
 	 * Set the controller, action and params.
-	 * @param string $controller
-	 * @param string $action
-	 * @param array $params
+	 * @param string $controller The fully-qualified class name of the controller.
+	 * @param string $action The name of the action to be called.
+	 * @param array $params Parameters to pass to the action.
 	 */
 	public function __construct($controller = null, $action = null, array $params = array()) {
 		$this->controller = $controller;

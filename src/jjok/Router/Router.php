@@ -8,7 +8,6 @@ use jjok\String\String;
  * Works out which controller and action to call from a given query.
  * @package jjok\Router
  * @author Jonathan Jefferies
- * @version 0.2.0
  */
 class Router {
 
@@ -25,8 +24,6 @@ class Router {
 	 * @var string
 	 */
 	protected $controller_path;
-
-// 	protected $default_action = 'index';
 	
 	/**
 	 * 
@@ -41,7 +38,7 @@ class Router {
 	/**
 	 * If URL is not in $routes, work out route
 	 * @param string $query The query string.
-	 * @return Route
+	 * @return Route?
 	 */
 	public function getRoute($query) {
 		
@@ -54,9 +51,9 @@ class Router {
 	}
 	
 	/**
-	 * 
-	 * @param unknown $query
-	 * @return Route
+	 * Find a defined Route based on the given query.
+	 * @param string $query
+	 * @return Route?
 	 */
 	public function matchRoute($query) {
 		#530600
