@@ -30,7 +30,7 @@ class Router {
 	 * @param array $routes
 	 * @param string $controller_path
 	 */
-	public function __construct(array $routes, $controller_path) {
+	public function __construct(array $routes, $controller_path = '') {
 		$this->routes = $routes;
 		$this->controller_path = $controller_path;
 	}
