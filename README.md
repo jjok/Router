@@ -20,14 +20,17 @@ Router
 	$controller = new $route->getController();
 	
 	# Call action of controller
-	call_user_func_array(array($controller, $route->getAction()), $route->getParams());
+	call_user_func_array(array(
+		$controller,
+		$route->getAction()
+	), $route->getParams());
 	
 TODO
 ----
 
-* Add support for different HTTP methods.
-* Rename public methods in Router.
+* Add support for different HTTP methods?
+* Rename public methods in Router?
 * Finish unit tests.
 * Add examples.
 
-Copyright (c) 2013 Jonathan Jefferies
+Copyright (c) 2015 Jonathan Jefferies
