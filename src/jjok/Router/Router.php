@@ -18,44 +18,44 @@ class Router {
 	 */
 	protected $routes = array();
 	
-	/**
-	 * The format of the controller file.
-	 * @todo Make this an array?
-	 * @var string
-	 */
-	protected $controller_path;
+// 	/**
+// 	 * The format of the controller file.
+// 	 * @var string
+// 	 */
+// 	protected $controller_path;
 	
 	/**
 	 * 
 	 * @param array $routes
-	 * @param string $controller_path
+// 	 * @param string $controller_path
 	 */
-	public function __construct(array $routes, $controller_path = '') {
+	public function __construct(array $routes/*, $controller_path = ''*/) {
 		$this->routes = $routes;
-		$this->controller_path = $controller_path;
+// 		$this->controller_path = $controller_path;
 	}
 
-	/**
-	 * If URL is not in $routes, work out route
-	 * @param string $query The query string.
-	 * @return Route?
-	 */
-	public function getRoute($query) {
-		
-		$route = $this->matchRoute($query);
-		if($route != null) {
-			return $route;
-		}
+// 	/**
+// 	 * If URL is not in $routes, work out route
+// 	 * @param string $query The query string.
+// 	 * @return Route?
+// 	 */
+// 	public function getRoute($query) {
+
+// 		$route = $this->matchRoute($query);
+// 		$route = $this->matchRoute($query);
+// 		if($route != null) {
+// 			return $route;
+// 		}
 	
-		return $this->automatic($query);
-	}
+// 		return $this->automatic($query);
+// 	}
 	
 	/**
 	 * Find a defined Route based on the given query.
 	 * @param string $query
 	 * @return Route?
 	 */
-	public function matchRoute($query) {
+	public function match($query) {
 		#530600
 		// 		#Exact match
 		// 		if(array_key_exists($query, $this->routes)) {
@@ -110,44 +110,44 @@ class Router {
 		return null;
 	}
 	
-	/**
-	 * Build a route from the given query.
-	 * @param string $query
-	 * @return Route
-	 */
-	public function automatic($query) {
+// 	/**
+// 	 * Build a route from the given query.
+// 	 * @param string $query
+// 	 * @return Route
+// 	 */
+// 	public function automatic($query) {
 		
-		$url_array = explode('/', $query);
+// 		$url_array = explode('/', $query);
 		
-		$controller = sprintf($this->controller_path, String::capitalise(array_shift($url_array)));
+// 		$controller = sprintf($this->controller_path, String::capitalise(array_shift($url_array)));
 		
-		if(class_exists($controller)) {
+// 		if(class_exists($controller)) {
 
-			$possible_action = array_shift($url_array);
-			$action = String::camelise($possible_action);
+// 			$possible_action = array_shift($url_array);
+// 			$action = String::camelise($possible_action);
 			
-			#No action, so go to index
-			if(empty($possible_action)) {
-				$action = 'index';
-			}
-			#Second passed item is param, not action
-			elseif(!is_callable(array($controller, $action))) {
-				array_unshift($url_array, $possible_action);
-				$action = 'index';
-			}
+// 			#No action, so go to index
+// 			if(empty($possible_action)) {
+// 				$action = 'index';
+// 			}
+// 			#Second passed item is param, not action
+// 			elseif(!is_callable(array($controller, $action))) {
+// 				array_unshift($url_array, $possible_action);
+// 				$action = 'index';
+// 			}
 			
-			# Check index method exists
-			if($action == 'index' && !is_callable(array($controller, $action))) {
+// 			# Check index method exists
+// 			if($action == 'index' && !is_callable(array($controller, $action))) {
 			
-				return null;
-			}
+// 				return null;
+// 			}
 			
-			$params = $url_array;
+// 			$params = $url_array;
 			
-			//FIXME Add RouteFactory
-			return new Route($controller, $action, $params);
-		}
+// 			// Add RouteFactory
+// 			return new Route($controller, $action, $params);
+// 		}
 		
-		return null;
-	}
+// 		return null;
+// 	}
 }

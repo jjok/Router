@@ -16,8 +16,8 @@ class RouterTest extends PHPUnit_Framework_TestCase {
 	 * `null` is returned when no match is found.
 	 */
 	public function testNullReturnedForUnknownRoute() {
-		$router = new Router(array(), '');
-		$this->assertNull($router->matchRoute('unknown'));
+		$router = new Router(array());
+		$this->assertNull($router->match('unknown'));
 	}
 	
 	/**
@@ -32,11 +32,11 @@ class RouterTest extends PHPUnit_Framework_TestCase {
 			'test' => $empty_route,
 			'test/test' => $route_with_no_action,
 			'test/test/11' => $full_route
-		), '');
+		));
 		
-		$this->assertEquals($empty_route, $router->matchRoute('test'));
-		$this->assertEquals($route_with_no_action, $router->matchRoute('test/test'));
-		$this->assertEquals($full_route, $router->matchRoute('test/test/11'));
+		$this->assertEquals($empty_route, $router->match('test'));
+		$this->assertEquals($route_with_no_action, $router->match('test/test'));
+		$this->assertEquals($full_route, $router->match('test/test/11'));
 	}
 	
 	/**
@@ -46,14 +46,14 @@ class RouterTest extends PHPUnit_Framework_TestCase {
 		$router = new Router(array(
 			'something/([a-z-]+)' => new Route(null, 'myAction', array('my-param1')),
 			'(.*)' => new Route(null, 'myAction', array('my-param1'))
-		), '');
+		));
 		
-		$route = $router->matchRoute('something/my-controller');
+		$route = $router->match('something/my-controller');
 		$this->assertSame('MyController', $route->getController());
 		$this->assertSame('myAction', $route->getAction());
 		$this->assertCount(1, $route->getParams());
 		
-		$route = $router->matchRoute('my-controller');
+		$route = $router->match('my-controller');
 		$this->assertSame('MyController', $route->getController());
 		$this->assertSame('myAction', $route->getAction());
 		$this->assertCount(1, $route->getParams());
@@ -66,14 +66,14 @@ class RouterTest extends PHPUnit_Framework_TestCase {
 		$router = new Router(array(
 			'something/([a-z-]+)' => new Route('MyController', null, array('my-param1')),
 			'(.*)' => new Route('MyController', null, array('my-param1'))
-		), '');
+		));
 		
-		$route = $router->matchRoute('something/my-action');
+		$route = $router->match('something/my-action');
 		$this->assertSame('MyController', $route->getController());
 		$this->assertSame('myAction', $route->getAction());
 		$this->assertCount(1, $route->getParams());
 		
-		$route = $router->matchRoute('my-action');
+		$route = $router->match('my-action');
 		$this->assertSame('MyController', $route->getController());
 		$this->assertSame('myAction', $route->getAction());
 		$this->assertCount(1, $route->getParams());
@@ -85,9 +85,9 @@ class RouterTest extends PHPUnit_Framework_TestCase {
 	public function testAdditionalWildcardMatchesAreAddedAsParams() {
 		$router = new Router(array(
 			'(.*)' => new Route('MyController', 'myAction')
-		), '');
+		));
 	
-		$route = $router->matchRoute('my-param1/my-param2/my-param3');
+		$route = $router->match('my-param1/my-param2/my-param3');
 		$this->assertSame('MyController', $route->getController());
 		$this->assertSame('myAction', $route->getAction());
 		$this->assertCount(3, $route->getParams());
@@ -102,55 +102,55 @@ class RouterTest extends PHPUnit_Framework_TestCase {
 	public function testNullReturnedIfNotEnoughMatchedParams() {
 		$router = new Router(array(
 			'(.*)' => new Route()
-		), '');
+		));
 		
-		$this->assertNull($router->matchRoute('myController'));
+		$this->assertNull($router->match('myController'));
 	}
 	
-	/**
-	 * 
-	 */
-	public function testNullReturnedIfClassDoesNotExist() {		
-		$router = new Router(array(), '%s');
-		$this->assertNull($router->automatic('some-controller'));
-	}
+// 	/**
+// 	 * 
+// 	 */
+// 	public function testNullReturnedIfClassDoesNotExist() {		
+// 		$router = new Router(array(), '%s');
+// 		$this->assertNull($router->automatic('some-controller'));
+// 	}
 
-	/**
-	 * 
-	 */
-	public function testDefaultActionUsedIfNoneGiven() {
-		$router = new Router(array(), '%s');
-		$route = $router->automatic('my-controller1');
-		$this->assertSame('MyController1', $route->getController());
-		$this->assertSame('index', $route->getAction());
-	}
+// 	/**
+// 	 * 
+// 	 */
+// 	public function testDefaultActionUsedIfNoneGiven() {
+// 		$router = new Router(array(), '%s');
+// 		$route = $router->automatic('my-controller1');
+// 		$this->assertSame('MyController1', $route->getController());
+// 		$this->assertSame('index', $route->getAction());
+// 	}
 	
-	/**
-	 * 
-	 */
-	public function testNullReturnedIfDefaultActionDoesNotExist() {
-		$router = new Router(array(), '%s');
-		$this->assertNull($router->automatic('my-controller2'));
-	}
+// 	/**
+// 	 * 
+// 	 */
+// 	public function testNullReturnedIfDefaultActionDoesNotExist() {
+// 		$router = new Router(array(), '%s');
+// 		$this->assertNull($router->automatic('my-controller2'));
+// 	}
 	
-	/**
-	 *
-	 */
-	public function testActionCanBeSpecified() {
-		$router = new Router(array(), '%s');
-		$route = $router->automatic('my-controller2/my-action');
-		$this->assertSame('MyController2', $route->getController());
-		$this->assertSame('myAction', $route->getAction());
-	}
+// 	/**
+// 	 *
+// 	 */
+// 	public function testActionCanBeSpecified() {
+// 		$router = new Router(array(), '%s');
+// 		$route = $router->automatic('my-controller2/my-action');
+// 		$this->assertSame('MyController2', $route->getController());
+// 		$this->assertSame('myAction', $route->getAction());
+// 	}
 	
-	/**
-	 * 
-	 */
-	public function testParamsCanBeSpecified() {
-		$router = new Router(array(), '%s');
-		$route = $router->automatic('my-controller1/my-param1');
-		$this->assertSame('MyController1', $route->getController());
-		$this->assertSame('index', $route->getAction());
-		$this->assertContains('my-param1', $route->getParams());
-	}
+// 	/**
+// 	 * 
+// 	 */
+// 	public function testParamsCanBeSpecified() {
+// 		$router = new Router(array(), '%s');
+// 		$route = $router->automatic('my-controller1/my-param1');
+// 		$this->assertSame('MyController1', $route->getController());
+// 		$this->assertSame('index', $route->getAction());
+// 		$this->assertContains('my-param1', $route->getParams());
+// 	}
 }
