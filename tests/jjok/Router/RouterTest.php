@@ -16,7 +16,7 @@ class RouterTest extends PHPUnit_Framework_TestCase {
 	 * `null` is returned when no match is found.
 	 */
 	public function testNullReturnedForUnknownRoute() {
-		$router = new Router(array());
+		$router = new Router();
 		$this->assertNull($router->match('unknown'));
 	}
 	

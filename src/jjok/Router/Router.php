@@ -29,7 +29,7 @@ class Router {
 	 * @param array $routes
 // 	 * @param string $controller_path
 	 */
-	public function __construct(array $routes/*, $controller_path = ''*/) {
+	public function __construct(array $routes = array()/*, $controller_path = ''*/) {
 		$this->routes = $routes;
 // 		$this->controller_path = $controller_path;
 	}
@@ -49,6 +49,17 @@ class Router {
 	
 // 		return $this->automatic($query);
 // 	}
+	
+	/**
+	 * Add a route.
+	 * @param Route $route The route to be added.
+	 * @return \jjok\Router\Router
+	 */
+	public function add(Route $route) {
+		$this->routes[] = $route;
+		
+		return $this;
+	}
 	
 	/**
 	 * Find a defined Route based on the given query.
