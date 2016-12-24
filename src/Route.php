@@ -1,6 +1,6 @@
 <?php
 
-namespace jjok\Todo\Router2;
+namespace jjok\Router;
 
 class Route
 {
